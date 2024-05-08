@@ -36,11 +36,11 @@ Seguimos a estrutura padrão do estilo [RESTful](https://en.wikipedia.org/wiki/R
 
 ## Padrão de endpoints
 
-    Para listagem, use GET: /endpoint/
-    Para inserção, use POST: /endpoint/
-    Para visualização, use GET: /endpoint/{id}
-    Para atualização, use PUT: /endpoint/{id}
-    Para exclusão, use DELETE: /endpoint/
+    Para listagem,      use GET: /endpoint
+    Para inserção,      use POST: /endpoint
+    Para visualização,  use GET: /endpoint/{id}
+    Para atualização,   use PUT/PATCH: /endpoint/{id}
+    Para exclusão,      use DELETE: /endpoint/{id}
 
 ## Seções (endpoints) disponíveis
 
