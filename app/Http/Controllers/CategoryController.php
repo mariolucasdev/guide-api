@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Category\{ StoreCategory, UpdateCategory };
-use App\Http\Requests\{ StoreCategoryRequest, UpdateCategoryRequest };
+use App\Http\Requests\Category\StoreCategoryRequest;
+use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Models\Category;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;

@@ -2,7 +2,7 @@
 
 namespace App\Actions\Auth;
 
-use App\Http\Requests\ApiLoginRequest;
+use App\Http\Requests\Auth\ApiLoginRequest;
 use App\Models\User;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
