@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    use ApiResponse;
+
     /**
      * Handle an authentication attempt.
      *
@@ -25,22 +28,20 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (! $user || ! Hash::check($request->password, $user->password)) {
-            return response()->json([
-                'message' => 'The provided credentials are incorrect.',
-                'status' => 'error',
-                'data' => null
-            ], 401);
+            return $this->errorResponse(
+                message: 'The provided credentials are incorrect.',
+                code: 401
+            );
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json([
-            'message' => 'User authenticated',
-            'status' => 'success',
-            'data' => [
+        return $this->successResponse(
+            message: 'User authenticated',
+            data: [
                 'token' => $token,
                 'user' => $user
             ]
-        ]);
+        );
     }
 }
