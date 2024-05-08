@@ -47,4 +47,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the categories for the user.
+     */
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
 }

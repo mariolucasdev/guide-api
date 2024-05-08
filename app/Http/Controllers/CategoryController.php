@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Category\StoreCategory;
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
@@ -36,5 +38,12 @@ class CategoryController extends Controller
             message: 'Category retrieved successfully',
             data: $category
         );
+    }
+
+    public function store(StoreCategoryRequest $request): JsonResponse
+    {
+        $category = new StoreCategory();
+
+        return $category($request);
     }
 }
