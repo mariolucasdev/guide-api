@@ -7,6 +7,7 @@ use App\Actions\Category\{
     UpdateCategory,
     DestroyCategory
 };
+use App\Interfaces\Category\CategoryControllerInterface;
 use App\Http\Requests\Category\{
     StoreCategoryRequest,
     UpdateCategoryRequest
@@ -15,7 +16,7 @@ use App\Models\Category;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
-class CategoryController extends Controller
+class CategoryController extends Controller implements CategoryControllerInterface
 {
     use ApiResponse;
 
@@ -48,24 +49,22 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request): JsonResponse
     {
-        $category = new StoreCategory();
+        $storeCategory = new StoreCategory();
 
-        return $category($request);
+        return $storeCategory($request);
     }
 
-    public function update(
-        UpdateCategoryRequest $request,
-        int $id
-    ): JsonResponse {
-        $category = new UpdateCategory();
+    public function update(UpdateCategoryRequest $request, int $id): JsonResponse
+    {
+        $updateCategory = new UpdateCategory();
 
-        return $category($request, $id);
+        return $updateCategory($request, $id);
     }
 
     public function destroy(int $id): JsonResponse
     {
-        $category = new DestroyCategory();
+        $destroyCategory = new DestroyCategory();
 
-        return $category($id);
+        return $destroyCategory($id);
     }
 }
