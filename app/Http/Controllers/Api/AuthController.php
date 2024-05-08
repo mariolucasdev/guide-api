@@ -7,7 +7,6 @@ use App\Actions\Auth\RegisterUserApi;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApiLoginRequest;
 use App\Http\Requests\ApiRegisterRequest;
-use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
