@@ -129,3 +129,29 @@ test('should be update category', function () {
             ],
         ]);
 })->group('category');
+
+test('should be delete category', function () {
+
+    $user = Sanctum::actingAs(
+        User::factory()->create(),
+        ['*']
+    );
+
+    $category = Category::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    $response = $this->deleteJson(route('categories.destroy', $category->id));
+
+    $response
+        ->assertStatus(200)
+        ->assertJsonStructure([
+            'message',
+            'status',
+        ]);
+
+    $categoriesNumber = Category::all()->count();
+
+    expect($categoriesNumber)->toBe(0);
+
+})->group('category');

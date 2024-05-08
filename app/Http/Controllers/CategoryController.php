@@ -55,4 +55,22 @@ class CategoryController extends Controller
 
         return $category($request, $id);
     }
+
+    public function destroy(int $id): JsonResponse
+    {
+        $category = Category::find($id);
+
+        if (! $category) {
+            return $this->errorResponse(
+                message: 'Category not found',
+                code: 404
+            );
+        }
+
+        $category->delete();
+
+        return $this->successResponse(
+            message: 'Category deleted successfully'
+        );
+    }
 }
