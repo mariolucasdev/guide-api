@@ -9,7 +9,7 @@ test('user login api', function () {
         'password' => bcrypt('password')
     ]);
 
-    $response = $this->postJson('/api/login', [
+    $response = $this->postJson('/api/auth/login', [
         'email' => $user->email,
         'password' => 'password'
     ]);
@@ -24,7 +24,7 @@ test('user login api with invalid credentials', function () {
         'email' => 'mario@test.com'
     ]);
 
-    $response = $this->postJson('/api/login', [
+    $response = $this->postJson('/api/auth/login', [
         'email' => $user->email,
         'password' => 'invalid-password'
     ]);
@@ -39,7 +39,7 @@ test('user login api with invalid credentials', function () {
 })->group('auth');
 
 test('login user without email', function () {
-    $response = $this->postJson('/api/login', [
+    $response = $this->postJson('/api/auth/login', [
         'password' => 'password'
     ]);
 
