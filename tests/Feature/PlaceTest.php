@@ -54,7 +54,7 @@ test('should be list places', function () {
                 ]
             ]
         ]);
-});
+})->group('place');
 
 test('should be show place', function () {
     $user = User::factory()->create();
@@ -106,7 +106,7 @@ test('should be show place', function () {
                 'updated_at',
             ]
         ]);
-});
+})->group('place');
 
 test('should be create a place', function () {
     $user = User::factory()->create();
@@ -160,4 +160,4 @@ test('should be create a place', function () {
             ],
             'status',
         ]);
-});
+})->group('place');

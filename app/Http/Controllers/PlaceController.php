@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Place\StorePlace;
+use App\Http\Requests\Place\StorePlaceRequest;
 use App\Models\Place;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
@@ -24,39 +26,11 @@ class PlaceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePlaceRequest $request): JsonResponse
     {
-        $request->validate([
-            'name' => 'required|string',
-            'image' => 'required|string',
-            'alias' => 'required|string',
-            'description' => 'required|string',
-            'keywords' => 'required|string',
-            'email' => 'required|email',
-            'zip_code' => 'required|string',
-            'address' => 'required|string',
-            'number' => 'required|string',
-            'complement' => 'required|string',
-            'city' => 'required|string',
-            'state' => 'required|string',
-            'geo_location' => 'required|string',
-            'phone' => 'required|string',
-            'whatsapp' => 'required|string',
-            'website' => 'required|string',
-            'facebook' => 'required|string',
-            'instagram' => 'required|string',
-            'linkedin' => 'required|string',
-            'status' => 'required|boolean',
-        ]);
+        $storePlace = new StorePlace();
 
-        $place = Place::create($request->all());
-
-        return $this->successResponse(
-            message: 'Place created successfully',
-            data: $place,
-            status: 'success',
-            code: 201
-        );
+        return $storePlace($request);
     }
 
     /**
