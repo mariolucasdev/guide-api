@@ -51,6 +51,9 @@ Principais:
 -   [/api/auth/login](#)
 -   [/api/auth/register](#)
 
+-   [/api/categories](#)
+-   [/api/categories/{id}](#)
+
 ### Header
 
 A requisição deve conter:
