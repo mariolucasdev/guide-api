@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Category\{ StoreCategory, UpdateCategory };
-use App\Http\Requests\Category\StoreCategoryRequest;
-use App\Http\Requests\Category\UpdateCategoryRequest;
+use App\Actions\Category\{
+    StoreCategory,
+    UpdateCategory,
+    DestroyCategory
+};
+use App\Http\Requests\Category\{
+    StoreCategoryRequest,
+    UpdateCategoryRequest
+};
 use App\Models\Category;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
@@ -58,19 +64,8 @@ class CategoryController extends Controller
 
     public function destroy(int $id): JsonResponse
     {
-        $category = Category::find($id);
+        $category = new DestroyCategory();
 
-        if (! $category) {
-            return $this->errorResponse(
-                message: 'Category not found',
-                code: 404
-            );
-        }
-
-        $category->delete();
-
-        return $this->successResponse(
-            message: 'Category deleted successfully'
-        );
+        return $category($id);
     }
 }

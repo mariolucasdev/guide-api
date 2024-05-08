@@ -2,16 +2,15 @@
 
 namespace App\Actions\Category;
 
-use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Models\Category;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
-class UpdateCategory
+class DestroyCategory
 {
     use ApiResponse;
 
-    public function __invoke(UpdateCategoryRequest $request, int $id): JsonResponse
+    public function __invoke(int $id): JsonResponse
     {
         $category = Category::find($id);
 
@@ -22,11 +21,10 @@ class UpdateCategory
             );
         }
 
-        $category->update($request->all());
+        $category->delete();
 
         return $this->successResponse(
-            message: 'Category updated successfully',
-            data: $category
+            message: 'Category deleted successfully'
         );
     }
 }
