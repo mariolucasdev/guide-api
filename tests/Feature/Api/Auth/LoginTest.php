@@ -37,3 +37,18 @@ test('user login api with invalid credentials', function () {
             'data' => null
         ]);
 })->group('auth');
+
+test('login user without email', function () {
+    $response = $this->postJson('/api/login', [
+        'password' => 'password'
+    ]);
+
+    $response
+        ->assertStatus(422)
+        ->assertJson([
+            'message' => 'The email field is required.',
+            'errors' => [
+                'email' => ['The email field is required.']
+            ]
+        ]);
+})->group('auth');
