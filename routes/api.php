@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PlaceController;
 use Illuminate\Support\Facades\Route;
 
 /* auth routes */
@@ -17,6 +18,12 @@ Route::resource('/categories', CategoryController::class)
     ->middleware('auth:sanctum');
 
 /* places routes */
+Route::resource('/places', PlaceController::class)
+    ->only(['index', 'show']);
+
+Route::resource('/places', PlaceController::class)
+    ->only(['store', 'update', 'destroy'])
+    ->middleware('auth:sanctum');
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();

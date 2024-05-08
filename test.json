@@ -1,0 +1,26 @@
+        {
+            "name": "Ourikas",
+            "alias": "ourikas",
+            "description": "Você busca, nós encontramos para você.",
+            "keywords": "propaganda, internet, web, mídia, publicidade, guia comercial, catalogo online ",
+            "id": "44",
+            "contact": {
+                "phones": [
+                    "87 3874-3411"
+                ],
+                "site": "http://ourikas.com",
+                "facebook": "https://www.facebook.com/ourikasoficial",
+                "email": "contato@ourikas.com"
+            },
+            "address": {
+                "street": "",
+                "city": "Ouricuri",
+                "state": "PE",
+                "zip": "56200-000"
+            },
+            "geolocation": "",
+            "image": "http://www.ourikas.com/media/empresas/intro/3991d0728e1fdf4d3c8ce52ce50f85bd.jpg",
+            "galery": [],
+            "thumb": "http://www.ourikas.com/media/empresas/intro/thumb-3991d0728e1fdf4d3c8ce52ce50f85bd.jpg",
+            "status": "1"
+        }
