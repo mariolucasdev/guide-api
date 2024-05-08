@@ -57,6 +57,25 @@ test('should be response not found category', function () {
         ]);
 })->group('category');
 
+test('update, create, delete category wuthout authentication', function () {
+    $response = $this->postJson('/api/categories', [
+        'name' => 'Category Test',
+        'user_id' => 1,
+    ]);
+
+    $response->assertStatus(401);
+
+    $response = $this->putJson('/api/categories/1', [
+        'name' => 'Category Test',
+    ]);
+
+    $response->assertStatus(401);
+
+    $response = $this->deleteJson('/api/categories/1');
+
+    $response->assertStatus(401);
+})->group('category');
+
 test('create category', function () {
 
     $user = Sanctum::actingAs(
@@ -72,6 +91,35 @@ test('create category', function () {
 
     $response
         ->assertStatus(201)
+        ->assertJsonStructure([
+            'data' => [
+                'id',
+                'name',
+                'created_at',
+                'updated_at',
+            ],
+        ]);
+})->group('category');
+
+test('update category', function () {
+
+    $user = Sanctum::actingAs(
+        User::factory()->create(),
+        ['*']
+    );
+
+    $category = Category::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    $response = $this
+        ->put("/api/categories/{$category->id}", [
+            'name' => 'Category Test Update',
+            'user_id' => $user->id,
+        ]);
+
+    $response
+        ->assertStatus(200)
         ->assertJsonStructure([
             'data' => [
                 'id',

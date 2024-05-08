@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Category\StoreCategory;
-use App\Http\Requests\StoreCategoryRequest;
+use App\Actions\Category\{ StoreCategory, UpdateCategory };
+use App\Http\Requests\{ StoreCategoryRequest, UpdateCategoryRequest };
 use App\Models\Category;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -45,5 +44,14 @@ class CategoryController extends Controller
         $category = new StoreCategory();
 
         return $category($request);
+    }
+
+    public function update(
+        UpdateCategoryRequest $request,
+        int $id
+    ): JsonResponse {
+        $category = new UpdateCategory();
+
+        return $category($request, $id);
     }
 }
