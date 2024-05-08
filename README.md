@@ -48,11 +48,12 @@ Segue as seções que você pode acessar pela API
 
 Principais:
 
--   [/api/auth/login](#)
--   [/api/auth/register](#)
+-   POST [/api/auth/login](#)
+-   POST [/api/auth/register](#)
 
--   [/api/categories](#)
--   [/api/categories/{id}](#)
+-   GET [/api/categories](#)
+-   GET [/api/categories/{id}](#)
+-   POST [/api/categories](#)
 
 ### Header
 
