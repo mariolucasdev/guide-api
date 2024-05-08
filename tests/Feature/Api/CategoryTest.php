@@ -76,7 +76,7 @@ test('update, create, delete category wuthout authentication', function () {
     $response->assertStatus(401);
 })->group('category');
 
-test('create category', function () {
+test('should be create category', function () {
 
     $user = Sanctum::actingAs(
         User::factory()->create(),
@@ -101,7 +101,7 @@ test('create category', function () {
         ]);
 })->group('category');
 
-test('update category', function () {
+test('should be update category', function () {
 
     $user = Sanctum::actingAs(
         User::factory()->create(),
