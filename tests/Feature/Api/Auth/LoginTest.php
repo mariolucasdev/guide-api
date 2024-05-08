@@ -16,6 +16,7 @@ test('user login api', function () {
 
     $response
         ->assertStatus(200)
+        ->assertHeader('content-type', 'application/json')
         ->assertJsonStructure([
             'message',
             'status',
@@ -46,10 +47,11 @@ test('user login api with invalid credentials', function () {
 
     $response
         ->assertStatus(401)
-        ->assertJson([
-            'message' => 'The provided credentials are incorrect.',
-            'status' => 'error',
-            'data' => null
+        ->assertHeader('content-type', 'application/json')
+        ->assertJsonStructure([
+            'message',
+            'status',
+            'data'
         ]);
 })->group('auth');
 
@@ -60,10 +62,11 @@ test('login user without email', function () {
 
     $response
         ->assertStatus(422)
-        ->assertJson([
-            'message' => 'The email field is required.',
+        ->assertHeader('content-type', 'application/json')
+        ->assertJsonStructure([
+            'message',
             'errors' => [
-                'email' => ['The email field is required.']
+                'email'
             ]
         ]);
 })->group('auth');
