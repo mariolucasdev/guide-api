@@ -48,8 +48,8 @@ Segue as seções que você pode acessar pela API
 
 Principais:
 
--   [/api/auth/login](...)
--   [/api/auth/register](...)
+-   [/api/auth/login](#)
+-   [/api/auth/register](#)
 
 ### Header
 
