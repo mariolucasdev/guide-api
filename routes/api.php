@@ -4,14 +4,19 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
+/* auth routes */
 Route::post('/auth/login', [AuthController::class, 'login']);
 Route::post('/auth/register', [AuthController::class, 'register']);
 
-Route::get('/categories', [CategoryController::class, 'index']);
-Route::get('/categories/{id}', [CategoryController::class, 'show']);
-Route::resource('categories', CategoryController::class)
+/* categories routes */
+Route::resource('/categories', CategoryController::class)
+    ->only(['index', 'show']);
+
+Route::resource('/categories', CategoryController::class)
     ->only(['store', 'update', 'destroy'])
     ->middleware('auth:sanctum');
+
+/* places routes */
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
