@@ -15,7 +15,22 @@ test('user login api', function () {
     ]);
 
     $response
-        ->assertStatus(200);
+        ->assertStatus(200)
+        ->assertJsonStructure([
+            'message',
+            'status',
+            'data' => [
+                'token',
+                'user' => [
+                    'id',
+                    'name',
+                    'email',
+                    'email_verified_at',
+                    'created_at',
+                    'updated_at'
+                ]
+            ]
+        ]);
 })->group('auth');
 
 test('user login api with invalid credentials', function () {
