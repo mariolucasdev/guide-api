@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Place\ListPlaces;
 use App\Actions\Place\StorePlace;
 use App\Actions\Place\UpdatePlace;
 use App\Http\Requests\Place\StorePlaceRequest;
@@ -9,7 +10,6 @@ use App\Http\Requests\Place\UpdatePlaceRequest;
 use App\Models\Place;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class PlaceController extends Controller
 {
@@ -17,12 +17,9 @@ class PlaceController extends Controller
 
     public function index()
     {
-        $places = Place::all();
+        $listPlaces = new ListPlaces();
 
-        return $this->successResponse(
-            message: 'List of all places',
-            data: $places,
-        );
+        return $listPlaces();
     }
 
     /**
