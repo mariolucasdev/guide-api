@@ -3,19 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Place\ListPlaces;
+use App\Actions\Place\ShowPlace;
 use App\Actions\Place\StorePlace;
 use App\Actions\Place\UpdatePlace;
 use App\Http\Requests\Place\StorePlaceRequest;
 use App\Http\Requests\Place\UpdatePlaceRequest;
-use App\Models\Place;
-use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
 class PlaceController extends Controller
 {
-    use ApiResponse;
-
-    public function index()
+    public function index(): JsonResponse
     {
         $listPlaces = new ListPlaces();
 
@@ -37,19 +34,9 @@ class PlaceController extends Controller
      */
     public function show(int $id): JsonResponse
     {
-        $place = Place::find($id);
+        $showPlace = new ShowPlace();
 
-        if(! $place) {
-            return $this->errorResponse(
-                message: 'Place not found',
-                code: 404
-            );
-        }
-
-        return $this->successResponse(
-            message: 'Place found',
-            data: $place,
-        );
+        return $showPlace($id);
     }
 
     /**
@@ -65,7 +52,7 @@ class PlaceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Place $place)
+    public function destroy(int $id)
     {
         //
     }
