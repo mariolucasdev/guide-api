@@ -22,7 +22,7 @@ class UpdateCategory
             );
         }
 
-        $category->update($request->all());
+        $category->update($request->validated());
 
         return $this->successResponse(
             message: 'Category updated successfully',

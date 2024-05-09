@@ -5,7 +5,7 @@ use App\Models\Place;
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
 
-test('should be list places', function () {
+test('response with list places json', function () {
     $user = User::factory()->create();
 
     $category = Category::factory()
@@ -56,7 +56,7 @@ test('should be list places', function () {
         ]);
 })->group('place');
 
-test('should be show place', function () {
+test('response with single place json', function () {
     $user = User::factory()->create();
 
     Sanctum::actingAs($user);
@@ -108,7 +108,7 @@ test('should be show place', function () {
         ]);
 })->group('place');
 
-test('should be create a place', function () {
+test('should create a new place', function () {
     $user = User::factory()->create();
 
     $category = Category::factory()
@@ -160,4 +160,70 @@ test('should be create a place', function () {
             ],
             'status',
         ]);
+})->group('place');
+
+test('should update a place', function () {
+
+    $user = User::factory()->create();
+
+    $category = Category::factory()
+        ->create([
+            'user_id' => $user->id,
+        ]);
+
+    Sanctum::actingAs($user);
+
+    $place = Place::factory()
+        ->create([
+            'category_id' => $category->id,
+            'user_id' => $user->id,
+        ]);
+
+    $place->name = 'New Name';
+    $place->description = 'New Description';
+
+    $response = $this
+        ->put(
+            route('places.update', $place->id),
+            $place->toArray()
+        );
+
+    $response
+        ->assertStatus(200)
+        ->assertJsonStructure([
+            'message',
+            'data' => [
+                'id',
+                'name',
+                'image',
+                'alias',
+                'description',
+                'keywords',
+                'email',
+                'zip_code',
+                'address',
+                'number',
+                'complement',
+                'city',
+                'state',
+                'geo_location',
+                'phone',
+                'whatsapp',
+                'website',
+                'facebook',
+                'instagram',
+                'linkedin',
+                'status',
+                'category_id',
+                'user_id',
+                'created_at',
+                'updated_at',
+            ],
+            'status',
+        ]);
+
+    $updatedPlace = Place::find($place->id);
+
+    expect($updatedPlace->name)->toBe('New Name');
+    expect($updatedPlace->description)->toBe('New Description');
 })->group('place');

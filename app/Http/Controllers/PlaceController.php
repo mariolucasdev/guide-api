@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Place\StorePlace;
+use App\Actions\Place\UpdatePlace;
 use App\Http\Requests\Place\StorePlaceRequest;
+use App\Http\Requests\Place\UpdatePlaceRequest;
 use App\Models\Place;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
@@ -54,19 +56,13 @@ class PlaceController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Place $place)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Place $place)
+    public function update(UpdatePlaceRequest $request, int $id): JsonResponse
     {
-        //
+        $updatePlace = new UpdatePlace();
+
+        return $updatePlace($request, $id);
     }
 
     /**
