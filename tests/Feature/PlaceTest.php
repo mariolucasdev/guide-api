@@ -227,3 +227,34 @@ test('should update a place', function () {
     expect($updatedPlace->name)->toBe('New Name');
     expect($updatedPlace->description)->toBe('New Description');
 })->group('place');
+
+test('should delete place', function () {
+
+    $user = User::factory()->create();
+    $category = Category::factory()
+        ->create([
+            'user_id' => $user->id,
+        ]);
+
+    $place = Place::factory()
+        ->create([
+            'category_id' => $category->id,
+            'user_id' => $user->id,
+        ]);
+
+    Sanctum::actingAs($user);
+
+    $response = $this->delete(route('places.destroy', $place->id));
+
+    $response
+        ->assertStatus(200)
+        ->assertJsonStructure([
+            'message',
+            'status',
+        ]);
+
+    $place = Place::find($place->id);
+
+    expect($place)->toBeNull();
+
+})->group('place');
