@@ -51,9 +51,21 @@ Principais:
 -   POST [/api/auth/login](#)
 -   POST [/api/auth/register](#)
 
+---
+
 -   GET [/api/categories](#)
 -   GET [/api/categories/{id}](#)
 -   POST [/api/categories](#)
+-   PUT ['/api/categories/{id}']
+-   DELETE ['/api/categories/{id}']
+
+---
+
+-   GET [/api/palaces](#)
+-   GET [/api/palaces/{id}](#)
+-   POST [/api/palaces](#)
+-   PUT ['/api/palaces/{id}']
+-   DELETE ['/api/palaces/{id}']
 
 ### Header
 
