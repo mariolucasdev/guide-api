@@ -2,7 +2,7 @@
 
 use App\Models\User;
 
-test('user login api', function () {
+test('user should be make api login', function () {
     $user = User::factory()->create([
         'name' => 'Mário Lucas',
         'email' => 'mario@test.com',
@@ -34,7 +34,7 @@ test('user login api', function () {
         ]);
 })->group('auth');
 
-test('user login api with invalid credentials', function () {
+test('should be response invalid credentials', function () {
     $user = User::factory()->create([
         'name' => 'Mário Lucas',
         'email' => 'mario@test.com'
@@ -55,7 +55,7 @@ test('user login api with invalid credentials', function () {
         ]);
 })->group('auth');
 
-test('login user without email', function () {
+test('should be response with validation error', function () {
     $response = $this->postJson('/api/auth/login', [
         'password' => 'password'
     ]);

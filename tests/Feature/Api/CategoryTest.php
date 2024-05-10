@@ -4,7 +4,7 @@ use App\Models\Category;
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
 
-test('should be response json with list categories', function () {
+test('should respond with list categories in json format', function () {
     $response = $this->get('/api/categories');
 
     $response
@@ -21,7 +21,7 @@ test('should be response json with list categories', function () {
         ]);
 })->group('category');
 
-test('should be response json with category detail', function () {
+test('should respond with category detail in json format', function () {
 
     $user = Sanctum::actingAs(
         User::factory()->create(),
@@ -46,7 +46,7 @@ test('should be response json with category detail', function () {
         ]);
 })->group('category');
 
-test('should be response not found category', function () {
+test('should respond with category not found error', function () {
     $response = $this->get('/api/categories/1');
 
     $response
@@ -57,26 +57,32 @@ test('should be response not found category', function () {
         ]);
 })->group('category');
 
-test('update, create, delete category wuthout authentication', function () {
+test('should respond with unauthorized error', function () {
     $response = $this->postJson('/api/categories', [
         'name' => 'Category Test',
         'user_id' => 1,
     ]);
 
-    $response->assertStatus(401);
+    $response
+        ->assertUnauthorized()
+        ->assertStatus(401);
 
     $response = $this->putJson('/api/categories/1', [
         'name' => 'Category Test',
     ]);
 
-    $response->assertStatus(401);
+    $response
+        ->assertUnauthorized()
+        ->assertStatus(401);
 
     $response = $this->deleteJson('/api/categories/1');
 
-    $response->assertStatus(401);
+    $response
+        ->assertUnauthorized()
+        ->assertStatus(401);
 })->group('category');
 
-test('should be create category', function () {
+test('category should be registered', function () {
 
     $user = Sanctum::actingAs(
         User::factory()->create(),
@@ -101,7 +107,7 @@ test('should be create category', function () {
         ]);
 })->group('category');
 
-test('should be update category', function () {
+test('category should be updated', function () {
 
     $user = Sanctum::actingAs(
         User::factory()->create(),
@@ -130,8 +136,7 @@ test('should be update category', function () {
         ]);
 })->group('category');
 
-test('should be delete category', function () {
-
+test('category should be deleted', function () {
     $user = Sanctum::actingAs(
         User::factory()->create(),
         ['*']

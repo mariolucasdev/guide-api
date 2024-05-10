@@ -1,6 +1,6 @@
 <?php
 
-test('register user api', function () {
+test('should be can register api user', function () {
     $user = [
         'name' => 'Mário Lucas',
         'email' => 'mario@test.com',
@@ -29,7 +29,7 @@ test('register user api', function () {
         ]);
 })->group('auth');
 
-test('register user api without confirm password', function () {
+test('should respond with password confirmation error', function () {
     $user = [
         'name' => 'Mário Lucas',
         'email' => 'mario@test.com',
@@ -49,7 +49,7 @@ test('register user api without confirm password', function () {
         ]);
 })->group('auth');
 
-test('register user api without name and email', function () {
+test('should respond with email validation error', function () {
     $user = [
         'password' => 'password',
         'password_confirmation' => 'password'
@@ -69,7 +69,7 @@ test('register user api without name and email', function () {
         ]);
 })->group('auth');
 
-test('register user with exists email', function () {
+test('should respond with existing email error', function () {
     $user = [
         'name' => 'Mário Lucas',
         'email' => 'mario@test.com',
