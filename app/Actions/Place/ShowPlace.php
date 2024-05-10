@@ -2,14 +2,12 @@
 
 namespace App\Actions\Place;
 
+use App\Actions\Action;
 use App\Models\Place;
-use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
-class ShowPlace
+final class ShowPlace extends Action
 {
-    use ApiResponse;
-
     public function __invoke(int $id): JsonResponse
     {
         $place = Place::find($id);

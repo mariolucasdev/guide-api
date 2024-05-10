@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Actions\Place\{
     ListPlaces,
@@ -9,13 +9,15 @@ use App\Actions\Place\{
     UpdatePlace,
     DestroyPlace,
 };
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Place\{
     StorePlaceRequest,
     UpdatePlaceRequest,
 };
+use App\Interfaces\Place\PlaceControllerInterface;
 use Illuminate\Http\JsonResponse;
 
-class PlaceController extends Controller
+class PlaceController extends Controller implements PlaceControllerInterface
 {
     public function index(): JsonResponse
     {

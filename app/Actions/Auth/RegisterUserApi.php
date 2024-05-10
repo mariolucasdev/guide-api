@@ -2,16 +2,15 @@
 
 namespace App\Actions\Auth;
 
+use App\Actions\Action;
 use App\Http\Requests\Auth\ApiRegisterRequest;
 use App\Models\User;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 
-class RegisterUserApi
+final class RegisterUserApi extends Action
 {
-    use ApiResponse;
-
     public function __invoke(ApiRegisterRequest $request): JsonResponse
     {
         $user = User::create($request->validated())

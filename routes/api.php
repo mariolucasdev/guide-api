@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\PlaceController;
 use Illuminate\Support\Facades\Route;
 
 /* auth routes */

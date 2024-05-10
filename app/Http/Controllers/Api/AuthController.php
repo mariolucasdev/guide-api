@@ -5,21 +5,18 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Actions\Auth\{LoginUserApi, RegisterUserApi};
 use App\Http\Requests\Auth\{ApiLoginRequest, ApiRegisterRequest};
+use App\Interfaces\Auth\AuthControllerInterface;
 use Illuminate\Http\JsonResponse;
 
-class AuthController extends Controller
+class AuthController extends Controller implements AuthControllerInterface
 {
     public function login(ApiLoginRequest $request): JsonResponse
     {
-        $user = new LoginUserApi();
-
-        return $user($request);
+        return app(LoginUserApi::class)($request);
     }
 
     public function register(ApiRegisterRequest $request): JsonResponse
     {
-        $user = new RegisterUserApi();
-
-        return $user($request);
+        return app(RegisterUserApi::class)($request);
     }
 }

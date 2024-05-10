@@ -2,16 +2,14 @@
 
 namespace App\Actions\Auth;
 
+use App\Actions\Action;
 use App\Http\Requests\Auth\ApiLoginRequest;
 use App\Models\User;
-use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 
-class LoginUserApi
+final class LoginUserApi extends Action
 {
-    use ApiResponse;
-
     public function __invoke(ApiLoginRequest $request): JsonResponse
     {
         $user = User::where('email', $request->email)->first();

@@ -2,14 +2,12 @@
 
 namespace App\Actions\Category;
 
+use App\Actions\Action;
 use App\Models\Category;
-use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
-class DestroyCategory
+final class DestroyCategory extends Action
 {
-    use ApiResponse;
-
     public function __invoke(int $id): JsonResponse
     {
         $category = Category::find($id);

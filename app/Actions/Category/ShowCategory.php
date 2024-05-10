@@ -3,13 +3,12 @@
 namespace App\Actions\Category;
 
 use App\Actions\Action;
-use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\JsonResponse;
 
-final class UpdateCategory extends Action
+final class ShowCategory extends Action
 {
-    public function __invoke(UpdateCategoryRequest $request, int $id): JsonResponse
+    public function __invoke(int $id): JsonResponse
     {
         $category = Category::find($id);
 
@@ -20,10 +19,8 @@ final class UpdateCategory extends Action
             );
         }
 
-        $category->update($request->validated());
-
         return $this->successResponse(
-            message: 'Category updated successfully',
+            message: 'Category retrieved successfully',
             data: $category
         );
     }

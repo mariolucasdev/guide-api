@@ -2,15 +2,13 @@
 
 namespace App\Actions\Place;
 
+use App\Actions\Action;
 use App\Http\Requests\Place\StorePlaceRequest;
 use App\Models\Place;
-use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
-class StorePlace
+final class StorePlace extends Action
 {
-    use ApiResponse;
-
     public function __invoke(StorePlaceRequest $request): JsonResponse
     {
         $place = Place::create($request->validated());

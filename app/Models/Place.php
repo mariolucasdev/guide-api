@@ -10,11 +10,6 @@ class Place extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'image',
@@ -40,17 +35,11 @@ class Place extends Model
         'user_id',
     ];
 
-    /**
-     * Get the category that owns the place.
-     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    /**
-     * Get the user that owns the place.
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

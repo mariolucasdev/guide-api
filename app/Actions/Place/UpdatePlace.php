@@ -2,15 +2,13 @@
 
 namespace App\Actions\Place;
 
+use App\Actions\Action;
 use App\Http\Requests\Place\UpdatePlaceRequest;
 use App\Models\Place;
-use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
-class UpdatePlace
+final class UpdatePlace extends Action
 {
-    use ApiResponse;
-
     public function __invoke(UpdatePlaceRequest $request, int $id): JsonResponse
     {
         $place = Place::find($id);

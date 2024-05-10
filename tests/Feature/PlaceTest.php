@@ -5,7 +5,7 @@ use App\Models\Place;
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
 
-test('response with list places json', function () {
+test('should be responded with list places json', function () {
     $user = User::factory()->create();
 
     $category = Category::factory()
@@ -56,7 +56,7 @@ test('response with list places json', function () {
         ]);
 })->group('place');
 
-test('response with single place json', function () {
+test('should be responded with single place json', function () {
     $user = User::factory()->create();
 
     Sanctum::actingAs($user);
@@ -108,7 +108,7 @@ test('response with single place json', function () {
         ]);
 })->group('place');
 
-test('should create a new place', function () {
+test('a new place should be created', function () {
     $user = User::factory()->create();
 
     $category = Category::factory()
@@ -162,7 +162,7 @@ test('should create a new place', function () {
         ]);
 })->group('place');
 
-test('should update a place', function () {
+test('place should be updated', function () {
 
     $user = User::factory()->create();
 
@@ -228,9 +228,10 @@ test('should update a place', function () {
     expect($updatedPlace->description)->toBe('New Description');
 })->group('place');
 
-test('should delete place', function () {
+test('place should be deleted', function () {
 
     $user = User::factory()->create();
+
     $category = Category::factory()
         ->create([
             'user_id' => $user->id,

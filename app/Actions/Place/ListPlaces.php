@@ -2,14 +2,13 @@
 
 namespace App\Actions\Place;
 
+use App\Actions\Action;
 use App\Models\Place;
-use App\Traits\ApiResponse;
+use Illuminate\Http\JsonResponse;
 
-class ListPlaces
+final class ListPlaces extends Action
 {
-    use ApiResponse;
-
-    public function __invoke()
+    public function __invoke(): JsonResponse
     {
         $places = Place::all();
 

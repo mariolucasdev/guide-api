@@ -2,15 +2,13 @@
 
 namespace App\Actions\Category;
 
+use App\Actions\Action;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Models\Category;
-use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
-class StoreCategory
+final class StoreCategory extends Action
 {
-    use ApiResponse;
-
     public function __invoke(StoreCategoryRequest $request): JsonResponse
     {
         $data = $request->validated();
