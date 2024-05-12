@@ -21,36 +21,26 @@ class PlaceController extends Controller implements PlaceControllerInterface
 {
     public function index(): JsonResponse
     {
-        $listPlaces = new ListPlaces();
-
-        return $listPlaces();
+        return app(ListPlaces::class)();
     }
 
     public function store(StorePlaceRequest $request): JsonResponse
     {
-        $storePlace = new StorePlace();
-
-        return $storePlace($request);
+        return app(StorePlace::class)($request);
     }
 
     public function show(int $id): JsonResponse
     {
-        $showPlace = new ShowPlace();
-
-        return $showPlace($id);
+        return app(ShowPlace::class)($id);
     }
 
     public function update(UpdatePlaceRequest $request, int $id): JsonResponse
     {
-        $updatePlace = new UpdatePlace();
-
-        return $updatePlace($request, $id);
+        return app(UpdatePlace::class)($request, $id);
     }
 
     public function destroy(int $id): JsonResponse
     {
-        $destroyPlace = new DestroyPlace();
-
-        return $destroyPlace($id);
+        return app(DestroyPlace::class)($id);
     }
 }
