@@ -6,12 +6,12 @@ test('user should be make api login', function () {
     $user = User::factory()->create([
         'name' => 'Mário Lucas',
         'email' => 'mario@test.com',
-        'password' => bcrypt('password')
+        'password' => bcrypt('password'),
     ]);
 
     $response = $this->postJson('/api/auth/login', [
         'email' => $user->email,
-        'password' => 'password'
+        'password' => 'password',
     ]);
 
     $response
@@ -28,21 +28,21 @@ test('user should be make api login', function () {
                     'email',
                     'email_verified_at',
                     'created_at',
-                    'updated_at'
-                ]
-            ]
+                    'updated_at',
+                ],
+            ],
         ]);
 })->group('auth');
 
 test('should be response invalid credentials', function () {
     $user = User::factory()->create([
         'name' => 'Mário Lucas',
-        'email' => 'mario@test.com'
+        'email' => 'mario@test.com',
     ]);
 
     $response = $this->postJson('/api/auth/login', [
         'email' => $user->email,
-        'password' => 'invalid-password'
+        'password' => 'invalid-password',
     ]);
 
     $response
@@ -51,13 +51,13 @@ test('should be response invalid credentials', function () {
         ->assertJsonStructure([
             'message',
             'status',
-            'data'
+            'data',
         ]);
 })->group('auth');
 
 test('should be response with validation error', function () {
     $response = $this->postJson('/api/auth/login', [
-        'password' => 'password'
+        'password' => 'password',
     ]);
 
     $response
@@ -66,7 +66,7 @@ test('should be response with validation error', function () {
         ->assertJsonStructure([
             'message',
             'errors' => [
-                'email'
-            ]
+                'email',
+            ],
         ]);
 })->group('auth');

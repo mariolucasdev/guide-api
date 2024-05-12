@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Actions\Place\{
-    ListPlaces,
-    ShowPlace,
-    StorePlace,
-    UpdatePlace,
-    DestroyPlace,
-};
+use App\Actions\Place\DestroyPlace;
+use App\Actions\Place\ListPlaces;
+use App\Actions\Place\ShowPlace;
+use App\Actions\Place\StorePlace;
+use App\Actions\Place\UpdatePlace;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Place\{
-    StorePlaceRequest,
-    UpdatePlaceRequest,
-};
+use App\Http\Requests\Place\StorePlaceRequest;
+use App\Http\Requests\Place\UpdatePlaceRequest;
 use App\Interfaces\Place\PlaceControllerInterface;
 use Illuminate\Http\JsonResponse;
 
@@ -21,36 +17,26 @@ class PlaceController extends Controller implements PlaceControllerInterface
 {
     public function index(): JsonResponse
     {
-        $listPlaces = new ListPlaces();
-
-        return $listPlaces();
+        return app(ListPlaces::class)();
     }
 
     public function store(StorePlaceRequest $request): JsonResponse
     {
-        $storePlace = new StorePlace();
-
-        return $storePlace($request);
+        return app(StorePlace::class)($request);
     }
 
     public function show(int $id): JsonResponse
     {
-        $showPlace = new ShowPlace();
-
-        return $showPlace($id);
+        return app(ShowPlace::class)($id);
     }
 
     public function update(UpdatePlaceRequest $request, int $id): JsonResponse
     {
-        $updatePlace = new UpdatePlace();
-
-        return $updatePlace($request, $id);
+        return app(UpdatePlace::class)($request, $id);
     }
 
     public function destroy(int $id): JsonResponse
     {
-        $destroyPlace = new DestroyPlace();
-
-        return $destroyPlace($id);
+        return app(DestroyPlace::class)($id);
     }
 }

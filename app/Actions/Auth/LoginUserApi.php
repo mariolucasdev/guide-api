@@ -27,7 +27,7 @@ final class LoginUserApi extends Action
             message: 'User authenticated',
             data: [
                 'token' => $token,
-                'user' => $user
+                'user' => $user,
             ]
         );
     }

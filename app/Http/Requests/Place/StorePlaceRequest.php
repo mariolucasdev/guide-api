@@ -43,7 +43,7 @@ class StorePlaceRequest extends FormRequest
             'linkedin' => 'required|string',
             'status' => 'required|boolean',
             'category_id' => 'required|integer|exists:categories,id',
-            'user_id' => 'required|integer|exists:users,id'
+            'user_id' => 'required|integer|exists:users,id',
         ];
     }
 }

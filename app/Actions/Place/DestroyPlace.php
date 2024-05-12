@@ -12,7 +12,7 @@ final class DestroyPlace extends Action
     {
         $place = Place::find($id);
 
-        if(! $place) {
+        if (! $place) {
             return $this->errorResponse(
                 message: 'Place not found',
                 code: 404

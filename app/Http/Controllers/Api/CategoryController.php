@@ -2,20 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Actions\Category\{
-    ListCategories,
-    ShowCategory,
-    StoreCategory,
-    UpdateCategory,
-    DestroyCategory
-};
+use App\Actions\Category\DestroyCategory;
+use App\Actions\Category\ListCategories;
+use App\Actions\Category\ShowCategory;
+use App\Actions\Category\StoreCategory;
+use App\Actions\Category\UpdateCategory;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Category\StoreCategoryRequest;
+use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Interfaces\Category\CategoryControllerInterface;
-use App\Http\Requests\Category\{
-    StoreCategoryRequest,
-    UpdateCategoryRequest
-};
-
 use Illuminate\Http\JsonResponse;
 
 final class CategoryController extends Controller implements CategoryControllerInterface
