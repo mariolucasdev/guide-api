@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Actions\Place\{
-    ListPlaces,
-    ShowPlace,
-    StorePlace,
-    UpdatePlace,
-    DestroyPlace,
-};
+use App\Actions\Place\DestroyPlace;
+use App\Actions\Place\ListPlaces;
+use App\Actions\Place\ShowPlace;
+use App\Actions\Place\StorePlace;
+use App\Actions\Place\UpdatePlace;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Place\{
-    StorePlaceRequest,
-    UpdatePlaceRequest,
-};
+use App\Http\Requests\Place\StorePlaceRequest;
+use App\Http\Requests\Place\UpdatePlaceRequest;
 use App\Interfaces\Place\PlaceControllerInterface;
 use Illuminate\Http\JsonResponse;
 

@@ -2,8 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -31,7 +29,7 @@ class PlaceFactory extends Factory
             'complement' => fake()->secondaryAddress,
             'city' => fake()->city,
             'state' => fake()->stateAbbr,
-            'geo_location' => fake()->latitude . ',' . fake()->longitude,
+            'geo_location' => fake()->latitude.','.fake()->longitude,
             'phone' => fake()->phoneNumber,
             'whatsapp' => fake()->phoneNumber,
             'website' => fake()->url,

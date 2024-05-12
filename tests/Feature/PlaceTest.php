@@ -51,8 +51,8 @@ test('should be responded with list places json', function () {
                     'user_id',
                     'created_at',
                     'updated_at',
-                ]
-            ]
+                ],
+            ],
         ]);
 })->group('place');
 
@@ -104,7 +104,7 @@ test('should be responded with single place json', function () {
                 'user_id',
                 'created_at',
                 'updated_at',
-            ]
+            ],
         ]);
 })->group('place');
 

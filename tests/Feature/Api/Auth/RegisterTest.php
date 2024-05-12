@@ -5,7 +5,7 @@ test('should be can register api user', function () {
         'name' => 'Mário Lucas',
         'email' => 'mario@test.com',
         'password' => 'password',
-        'password_confirmation' => 'password'
+        'password_confirmation' => 'password',
     ];
 
     $response = $this->postJson('/api/auth/register', $user);
@@ -23,9 +23,9 @@ test('should be can register api user', function () {
                     'name',
                     'email',
                     'created_at',
-                    'updated_at'
-                ]
-            ]
+                    'updated_at',
+                ],
+            ],
         ]);
 })->group('auth');
 
@@ -44,15 +44,15 @@ test('should respond with password confirmation error', function () {
         ->assertJsonStructure([
             'message',
             'errors' => [
-                'password'
-            ]
+                'password',
+            ],
         ]);
 })->group('auth');
 
 test('should respond with email validation error', function () {
     $user = [
         'password' => 'password',
-        'password_confirmation' => 'password'
+        'password_confirmation' => 'password',
     ];
 
     $response = $this->postJson('/api/auth/register', $user);
@@ -64,8 +64,8 @@ test('should respond with email validation error', function () {
             'message',
             'errors' => [
                 'name',
-                'email'
-            ]
+                'email',
+            ],
         ]);
 })->group('auth');
 
@@ -74,7 +74,7 @@ test('should respond with existing email error', function () {
         'name' => 'Mário Lucas',
         'email' => 'mario@test.com',
         'password' => 'password',
-        'password_confirmation' => 'password'
+        'password_confirmation' => 'password',
     ];
 
     $this->postJson('/api/auth/register', $user);
@@ -87,7 +87,7 @@ test('should respond with existing email error', function () {
         ->assertJsonStructure([
             'message',
             'errors' => [
-                'email'
-            ]
+                'email',
+            ],
         ]);
 })->group('auth');
